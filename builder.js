@@ -104,7 +104,9 @@ function generateVoronoiSVG(width, height, siteCount, border) {
 	var xml = xmlbuilder.create("svg");
 	xml
 		.att("xmlns", "http://www.w3.org/2000/svg")
-		.att("version", "1.1");
+		.att("version", "1.1")
+		.att("width", width + "px")
+		.att("height", height + "px");
 
 	cells.forEach(function (cell) {
 		var path = xml.ele("path")

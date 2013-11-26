@@ -1,10 +1,42 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Placeholder</title>
+		<title>Placeholder Generator</title>
 		<link rel="stylesheet" type="text/css" href="assets/style.css" />
+		<link rel="icon" type="image/png" href="assets/favicon.png" />
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+		<script>
+			function PreviewController($scope) {
+				$scope.width = 200;
+				$scope.height = 200;
+				$scope.shapes = null;
+				$scope.border = null;
+
+				$scope.url = function() {
+					return "http://" + window.location.host + "/" + 
+						$scope.width + "x" + $scope.height +
+						($scope.shapes ? "x" + $scope.shapes : "") +
+						($scope.border ? ":" + $scope.border : "");
+				}
+			}
+		</script>
 	</head>
-	<body>
-		barf
+	<body ng-app>
+		<section class="body" ng-controller="PreviewController">
+			<header>Placeholder Generator</header>
+			<div>
+				<section class="form">
+					<div class="field"><label for="width">Width:</label><input id="width" type="number" min="1" ng-model="width" /></div>
+					<div class="field"><label for="height">Height:</label><input id="height" type="number" min="1" ng-model="height" /></div>
+					<div class="field"><label for="shapes">Shapes:</label><input id="shapes" type="number" min="2" placeholder="25" ng-model="shapes" /></div>
+					<div class="field"><label for="border">Border:</label><input id="border" type="number" min="0" placeholder="2" ng-model="border" /></div>
+				</section><section class="preview">
+					<label for="url">URL:</label><input id="url" type="text" readonly value="{{url()}}" onclick="select()"/><br/>
+					<label>Preview:</label><br/>
+					<img src="{{url()}}" />
+				</section>
+			</div>
+			<section class="copyright">&copy;2013 Alex Foran</section>
+		</section>
 	</body>
 </html>
