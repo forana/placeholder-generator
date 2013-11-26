@@ -17,7 +17,7 @@ app.get(/^\/([0-9]+)x([0-9]+)(x[0-9]+)?(:[0-9]+)?/, function(req, res) {
 	var width = req.params[0];
 	var height = req.params[1];
 	var sites = req.params[2] ? req.params[2].substring(1) : 25;
-	var border = req.params[3] ? req.params[3].substring(1) : 2;
+	var border = req.params[3] !== undefined ? req.params[3].substring(1) : 2;
 
 	if (sites > 500 || width > 200000 || height > 200000) {
 		res.send("too big, cannot deal", 500);
