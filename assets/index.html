@@ -16,7 +16,7 @@
 					return "http://" + window.location.host + "/" + 
 						$scope.width + "x" + $scope.height +
 						($scope.shapes ? "x" + $scope.shapes : "") +
-						($scope.border ? ":" + $scope.border : "");
+						($scope.border !== null ? ":" + $scope.border : "");
 				}
 			}
 		</script>
